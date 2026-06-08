@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Cobaken | Roblox Developer</title>
+    <!-- Шрифт из Google Fonts для красоты -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 (бесплатные иконки) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0c12;
+            color: #eef2ff;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        /* Шапка */
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .avatar {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #1e2a3a, #0f172a);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            border: 2px solid #3b82f6;
+            box-shadow: 0 0 15px rgba(59,130,246,0.3);
+        }
+
+        .avatar i {
+            font-size: 3rem;
+            color: #3b82f6;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #1e293b;
+            padding: 0.25rem 1rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #94a3b8;
+            margin-top: 0.5rem;
+        }
+
+        .subtitle {
+            color: #94a3b8;
+            max-width: 600px;
+            margin: 1rem auto 0;
+        }
+
+        /* Секции */
+        .section {
+            background: #111827;
+            border-radius: 24px;
+            padding: 1.8rem;
+            margin-bottom: 2rem;
+            border: 1px solid #1f2a3e;
+            transition: all 0.2s;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            border-left: 4px solid #3b82f6;
+            padding-left: 1rem;
+        }
+
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+        }
+
+        .skill-tag {
+            background: #1e2a3a;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #cbd5e6;
+        }
+
+        /* Карточки проектов */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            background: #0f172a;
+            border-radius: 20px;
+            padding: 1.3rem;
+            transition: transform 0.1s ease, box-shadow 0.2s;
+            border: 1px solid #1e2a3a;
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+            border-color: #3b82f6;
+            box-shadow: 0 10px 20px -5px rgba(0,0,0,0.5);
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        .project-links {
+            margin: 0.8rem 0 1rem;
+        }
+
+        .project-links a {
+            color: #60a5fa;
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-right: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .project-links a:hover {
+            text-decoration: underline;
+        }
+
+        .project-desc {
+            font-size: 0.9rem;
+            color: #cbd5e6;
+            margin-top: 0.8rem;
+            border-top: 1px solid #1f2a3e;
+            padding-top: 0.8rem;
+        }
+
+        /* Код */
+        .code-block {
+            background: #0a0c12;
+            border-radius: 16px;
+            padding: 1.2rem;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            color: #bbf0ff;
+            border: 1px solid #2d3a4a;
+            margin-top: 1rem;
+        }
+
+        /* контакты */
+        .contacts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .contact-btn {
+            background: #1e293b;
+            border-radius: 40px;
+            padding: 0.7rem 1.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: #eef2ff;
+            font-weight: 500;
+            transition: 0.2s;
+            border: 1px solid #334155;
+        }
+
+        .contact-btn:hover {
+            background: #2d3a4a;
+            border-color: #3b82f6;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0 1rem;
+            color: #5b6e8c;
+            font-size: 0.8rem;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        @media (max-width: 700px) {
+            .container {
+                padding: 1.5rem 1rem;
+            }
+            .section {
+                padding: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <div class="avatar">
+            <i class="fas fa-code"></i>
+        </div>
+        <h1>Cobaken / 1122danuul1122</h1>
+        <div class="badge">⚡ Roblox Lua Script Developer</div>
+        <div class="subtitle">
+            Создаю игровые механики: боевые системы, твины, GUI, монеты, телепорты, ловушки.
+        </div>
+    </div>
+
+    <!-- Навыки -->
+    <div class="section">
+        <div class="section-title">
+            <i class="fas fa-cogs" style="color:#3b82f6"></i> 
+            Мои навыки
+        </div>
+        <div class="skills-grid">
+            <span class="skill-tag">⚔️ Механики боя (урон, хитбоксы, даунслэм)</span>
+            <span class="skill-tag">🎬 TweenService / TwinService</span>
+            <span class="skill-tag">🗺️ Field / Zone / триггеры</span>
+            <span class="skill-tag">🔫 Raycast, Vector3, частицы</span>
+            <span class="skill-tag">📡 RemoteEvents / RemoteFunctions</span>
+            <span class="skill-tag">🚗 A‑Chassis (в процессе)</span>
+            <span class="skill-tag">💰 Системы монет, двери, телепорты</span>
+            <span class="skill-tag">💬 Диалоги / GUI / промокоды</span>
+        </div>
+    </div>
+
+    <!-- Проекты -->
+    <div class="section">
+        <div class="section-title">
+            <i class="fas fa-gamepad" style="color:#3b82f6"></i> 
+            Проекты
+        </div>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-title">🔪 Murderer, Sheriff, Innocent</div>
+                <div class="project-links">
+                    <a href="https://www.roblox.com/games/15129652043/Murderer-Sheriff-innocent" target="_blank"><i class="fab fa-roblox"></i> Roblox</a>
+                </div>
+                <div class="project-desc">
+                    Механика монет и модерация, открытие дверей, GUI, промокоды, питомцы (в процессе).
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-title">🗼 Troll Tower</div>
+                <div class="project-links">
+                    <a href="https://www.roblox.com/games/72400429274209/Troll-tower-by-danuilka1122" target="_blank"><i class="fab fa-roblox"></i> Roblox</a>
+                </div>
+                <div class="project-desc">
+                    Триггеры ловушек, эффекты через TweenService, динамичные зоны.
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-title">🐹 Hamster Cat</div>
+                <div class="project-links">
+                    <a href="https://www.roblox.com/games/18305424043/Hamster-Cat" target="_blank"><i class="fab fa-roblox"></i> Roblox</a>
+                </div>
+                <div class="project-desc">
+                    Кликер по коту, двери за монеты, диалоги, деньги за убийство, телепорты, локации.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Пример кода (твой) -->
+    <div class="section">
+        <div class="section-title">
+            <i class="fas fa-code" style="color:#3b82f6"></i> 
+            Пример кода
+        </div>
+        <div class="code-block">
+            local TweenService = game:GetService("TweenService")<br>
+            <br>
+            local function playHitEffect(part)<br>
+            &nbsp;&nbsp;local tweenInfo = TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)<br>
+            &nbsp;&nbsp;local goal = {Transparency = 0.5, Color = Color3.fromRGB(255, 0, 0)}<br>
+            &nbsp;&nbsp;local tween = TweenService:Create(part, tweenInfo, goal)<br>
+            &nbsp;&nbsp;tween:Play()<br>
+            &nbsp;&nbsp;tween.Completed:Wait()<br>
+            &nbsp;&nbsp;goal = {Transparency = 0, Color = Color3.fromRGB(255, 255, 255)}<br>
+            &nbsp;&nbsp;tween = TweenService:Create(part, tweenInfo, goal)<br>
+            &nbsp;&nbsp;tween:Play()<br>
+            end
+        </div>
+        <div style="margin-top: 1rem; font-size: 0.85rem; color:#94a3b8">
+            <i class="fas fa-mouse-pointer"></i> Эффект хита с изменением цвета и прозрачности
+        </div>
+    </div>
+
+    <!-- Контакты / что ищу -->
+    <div class="section">
+        <div class="section-title">
+            <i class="fas fa-handshake" style="color:#3b82f6"></i> 
+            Что ищу
+        </div>
+        <p style="margin-bottom: 1rem;">✅ Оплачиваемые заказы (рубли / Robux) — фикс, а не «процент от прибыли»<br>
+           ✅ Конкретные задачи с чётким ТЗ<br>
+           ✅ Готов к тестовому заданию</p>
+        
+        <div class="contacts">
+            <a href="https://discordapp.com/users/cobaka1967" class="contact-btn" target="_blank"><i class="fab fa-discord"></i> Discord: cobaka1967</a>
+            <a href="https://t.me/YT_Cobaken555" class="contact-btn" target="_blank"><i class="fab fa-telegram"></i> Telegram: @YT_Cobaken555</a>
+        </div>
+        <div style="text-align: center; margin-top: 1rem; font-size:0.85rem">
+            📩 Пишите в любое время — обсудим задачи
+        </div>
+    </div>
+
+    <footer>
+        © 2025 Cobaken — Roblox Developer | Быстро, чисто, с душой
+    </footer>
+</div>
+
+</body>
+</html>
